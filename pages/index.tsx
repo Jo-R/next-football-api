@@ -1,11 +1,15 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import { Button } from "@/components/Button";
 
-const inter = Inter({ subsets: ["latin"] });
-
+// TODO so how cna I cache the result os it doesn't always call it.
+// TODO can create a dummy one for dev purposes?
 export default function Home() {
+  const getBurnleyStats = async () => {
+    const res = await fetch("/api/thing");
+    const { response }: any = await res.json();
+    alert(response);
+  };
   return (
     <>
       <Head>
@@ -16,6 +20,9 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <p>Hi sports fans...</p>
+        <Button onPress={getBurnleyStats}>
+          Lets get the stats for the clarets
+        </Button>
       </main>
     </>
   );
